@@ -6,6 +6,8 @@ use Ray\Di\AbstractModule;
 use Vendor\Hello\BarInterceptor;
 use Vendor\Hello\Foo;
 use Vendor\Hello\FooInterface;
+use Vendor\Hello\RequestInterface;
+use Vendor\Hello\RequestProvider;
 
 class AppModule extends AbstractModule
 {
@@ -18,5 +20,6 @@ class AppModule extends AbstractModule
             $this->matcher->startsWith('actionIndex'),
             [BarInterceptor::class]
         );
+        $this->bind(RequestInterface::class)->toProvider(RequestProvider::class);
     }
 }

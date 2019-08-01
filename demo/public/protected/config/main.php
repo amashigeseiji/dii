@@ -23,5 +23,11 @@ return [
                 ],
             ],
         ],
+        'urlManager' => [
+            'urlFormat' => 'path',
+            'rules' => [
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ]
+        ],
     ],
 ];

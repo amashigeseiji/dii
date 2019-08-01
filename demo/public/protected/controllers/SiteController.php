@@ -1,8 +1,10 @@
 <?php
 
 use Ray\Di\Di\Inject;
+use Ray\Di\Di\Assisted;
 use Koriym\Dii\Injectable;
 use Vendor\Hello\FooInterface;
+use Vendor\Hello\RequestInterface;
 
 /**
  * SiteController is the default controller to handle user requests.
@@ -28,5 +30,14 @@ class SiteController extends CController implements Injectable
     public function actionIndex()
     {
         echo 'Hello World' . $this->foo->get();
+    }
+
+    /**
+     * @Assisted({"request"})
+     */
+    public function actionSearch(string $someKey, RequestInterface $request = null)
+    {
+        $val = $request->get('someKey');
+        echo 'someKey is: ' . ($val ? htmlspecialchars($val) : 'not given.');
     }
 }
